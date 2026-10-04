@@ -1,10 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
-	"fmt"
 	"io"
-	"math"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -59,15 +56,16 @@ func UploadHandle(res http.ResponseWriter, req *http.Request) {
     } 
 
     // Возвращаем успешный ответ клиенту
-    response := map[string]interface{}{
+    res.Write([]byte(resultString))
+    /*response := map[string]interface{}{
         "status":   "success",
         "saved_as": fileName,
         "message":  "Файл обработан и сохранен",
-        "preview": resultString[:int(math.Min(float64(len(resultString)), 50))],
+        "preview": resultString,
     }
 
     res.Header().Set("Content-Type", "application/json")
     if err := json.NewEncoder(res).Encode(response); err != nil {
         http.Error(res, fmt.Sprintf("result sending error: %v", err), http.StatusInternalServerError)
-    }
+    }*/
 }

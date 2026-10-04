@@ -2,7 +2,6 @@ package service
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/Yandex-Practicum/go1fl-sprint6-final/pkg/morse"
 )
@@ -39,7 +38,7 @@ func ConvertMessage(msg string) (string, error) {
 	}
 
 	isMorse := true
-	for _, r := range []rune(strings.ToLower(msg)) {
+	for _, r := range []rune(msg) {
 		if isMorse {
 			isMorse = (r == ' ' || r == '.' || r == '-')
 		}
