@@ -12,7 +12,7 @@ import (
 const allowedChars = "абвгдежзийклмнопрстуфхцчшщъыьэюя0123456789.,:?'-/()“=+@ "
 
 // Функция для проверки является ли переданный текст Морзе или нет и последующего преобразования
-func ConvertMessage(msg string) (string, error) {
+/*func ConvertMessage(msg string) (string, error) {
 	if len(msg) == 0 {
 		return "", fmt.Errorf("provided string is empty")
 	}
@@ -23,6 +23,23 @@ func ConvertMessage(msg string) (string, error) {
 		if !strings.ContainsRune(allowedChars, r) {
 			return "", fmt.Errorf("provided symbol '%c' at index %d is not legal", r, i)
 		}
+		if isMorse {
+			isMorse = (r == ' ' || r == '.' || r == '-')
+		}
+	}
+	if isMorse {
+		return morse.ToText(msg), nil // Морзе
+	}
+	return morse.ToMorse(msg), nil // обычный текст
+}*/
+
+func ConvertMessage(msg string) (string, error) {
+	if len(msg) == 0 {
+		return "", fmt.Errorf("provided string is empty")
+	}
+
+	isMorse := true
+	for _, r := range []rune(strings.ToLower(msg)) {
 		if isMorse {
 			isMorse = (r == ' ' || r == '.' || r == '-')
 		}
